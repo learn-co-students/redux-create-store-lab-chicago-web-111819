@@ -1,4 +1,22 @@
+let store = createStore(candyReducer)
 // write your createStore function here
+
+function createStore(reducer) {
+  let state
+
+  function dispatch(action) {
+    state = reducer(state, action)
+    console.log(state)
+    render()
+  }
+
+  function getState(){
+    return state
+  }
+
+  return {dispatch, getState}
+
+}
 
 function candyReducer(state = [], action) {
   switch (action.type) {
@@ -20,3 +38,5 @@ function render() {
 
 // use your createStore function and the functions provided here to create a store
 // once the store is created, call an initial dispatch
+
+store.dispatch({type: '@@INIT'})
